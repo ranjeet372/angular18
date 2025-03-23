@@ -1,0 +1,21 @@
+<div class="mt-2 p-2 bg-secondary text-white rounded">
+    <h1>ng- template</h1>
+</div>
+<div class="row pt-3">
+    <div class="col-3">
+        <div class="bg-primary p-3" *ngIf="isUSerLoggedIn;else notLogged">
+            {{loggedInUserName}}
+        </div>
+        <ng-template #notLogged>
+            <div class="bg-primary p-3">
+                <span>User is not logged In</span>
+            </div>
+        </ng-template>
+    </div>
+</div>
+<div class="row pt-3">
+    <div class="col-3 text-center">
+        <button (click)="LoginUser()" class="btn btn-success mx-2">Login User</button>
+        <button (click)="logoutUser()"  class="btn btn-danger">Logout User</button>
+    </div>
+</div>

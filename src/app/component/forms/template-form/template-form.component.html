@@ -1,0 +1,62 @@
+<div class="container my-5">
+    <div class="mt-2 p-2 bg-secondary text-white rounded">
+        <h1 class="mb-3">Template Driven</h1>
+        <p>Using ngModel</p>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <form #form="ngForm" class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label">First Name</label>
+                    <input type="text" class="form-control" [(ngModel)]="userObj.firstName" name="firstName">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Last Name</label>
+                    <input type="text" class="form-control" [(ngModel)]="userObj.lastName" name="lastName">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">User Name</label>
+                    <input type="text" class="form-control" #userName="ngModel" [(ngModel)]="userObj.userName"
+                        name="userName" required minlength="3">
+                    <div class="text-danger">
+                        @if ((userName.touched || userName.dirty) && userName.errors?.["required"]) {
+                        <span>This is required</span>
+                        }@else if ((userName.touched || userName.dirty) && userName.errors?.["minlength"]) {
+                        <span>Min 3 char required</span>
+                        }
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">City</label>
+                    <input type="text" class="form-control" [(ngModel)]="userObj.city" name="city">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">State</label>
+                    <select name="state" class="form-select" [(ngModel)]="userObj.state">
+                        <option selected disabled value="">Choose...</option>
+                        <option>Telangana</option>
+                        <option>Goa</option>
+                        <option>Uttar Pradesh</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Zip Code</label>
+                    <input type="text" class="form-control" [(ngModel)]="userObj.zipCode" name="zipCode">
+                </div>
+                <div class="col-md-4">
+                    <input type="checkbox" class="form-check-input" [(ngModel)]="userObj.isAcceptTerms"
+                        name="isAcceptTerms">
+                    <label for="price" class="form-label">Agree to terms and conditions</label>
+                </div>
+                <div class="col-12">
+                    <button type="button" (click)="resetUser()" class="btn btn-secondary">Reset</button>
+                    <button type="button" [disabled]="form.invalid" (click)="addUser()"
+                        class="btn btn-primary mx-2">Submit</button>
+                </div>
+                <div class="col-4">
+                    {{formValue|json}}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
